@@ -1,0 +1,101 @@
+<odoo>
+  <data>
+<!-- res.partner inherit form view -->
+<record id="view_partner_form" model="ir.ui.view">
+  <field name="name">res.partner.inherit.view.form</field>
+  <field name="model">res.partner</field>
+  <field name="inherit_id" ref="base.view_partner_form"/>
+  <field name="arch" type="xml">
+    <xpath expr="//field[@name='vat']" position="after">
+      <field name="is_student"/>
+    </xpath>
+    <!-- <xpath expr="//field[@name='mobile']" position="replace">
+    </xpath> -->
+  </field>
+</record>
+
+<!-- res.partner action window -->
+<record id="res_partner_action" model="ir.actions.act_window">
+  <field name="name">res.partner.action</field>
+  <field name="type">ir.actions.act_window</field>
+  <field name="res_model">res.partner</field>
+  <field name="view_mode">kanban,tree,form</field>
+  <!-- <field name="view_type">form</field> -->
+  <field name="domain">[]</field>
+  <field name="context">{}</field>
+  <!-- <field name="target">{current}</field> -->
+  <field name="help" type="html">
+    <p class="oe_view_nocontent_create">
+      <!-- Add Text Here -->
+    </p><p>
+      <!-- More details about what a user can do with this object will be OK --> 
+    
+    </p>
+  </field>
+
+</record>
+
+<!-- This Menu Item will appear in the Upper bar, that's why It needs NO parent or action -->
+  <menuitem id="student_menu_root" name="Estudiantes" sequence="10"/>
+  <!-- This Menu Item Must have a parent -->
+  <menuitem id="student_menu_categ" name="Estudiantes" parent="prueba.student_menu_root" sequence="10"/>
+
+  <menuitem id="student_menu_list" name="Lista de Estudiantes" parent="prueba.student_menu_categ" action="res_partner_action" sequence="10"/>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="prueba.list">
+      <field name="name">prueba list</field>
+      <field name="model">prueba.prueba</field>
+      <field name="arch" type="xml">
+        <list>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </list>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="prueba.action_window">
+      <field name="name">prueba window</field>
+      <field name="res_model">prueba.prueba</field>
+      <field name="view_mode">list,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="prueba.action_server">
+      <field name="name">prueba server</field>
+      <field name="model_id" ref="model_prueba_prueba"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "list,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="prueba" id="prueba.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="prueba.menu_1" parent="prueba.menu_root"/>
+    <menuitem name="Menu 2" id="prueba.menu_2" parent="prueba.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="prueba.menu_1_list" parent="prueba.menu_1"
+              action="prueba.action_window"/>
+    <menuitem name="Server to list" id="prueba" parent="prueba.menu_2"
+              action="prueba.action_server"/>
+-->
+  </data>
+</odoo>

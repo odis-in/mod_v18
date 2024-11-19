@@ -1,0 +1,86 @@
+<odoo>
+  <data>
+    
+
+    <!-- prueba.student tree view -->
+    <record id="prueba_student_view_tree" model="ir.ui.view">
+        <field name="name">prueba.student.view.tree</field>
+        <field name="model">prueba.student</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="career_id"/>
+                <field name="name"/>
+                <field name="age"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- prueba.student form view -->
+    <record id="prueba_student_view_form" model="ir.ui.view">
+        <field name="name">prueba.student.view.form</field>
+        <field name="model">prueba.student</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <group name="name" string="string">
+                            <field name="name"/>
+                            <field name="last_name"/>
+                            <field name="age"/>
+                        </group>
+                        <group name="contact" >
+                            <field name="career_id"/>
+                            <field name="avg_score"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="class" string="Clases cursadas">
+                            <field name="class_ids">
+                                <list editable="bottom">
+                                    <field name="student_id" column_invisible="1"/>
+                                    <field name="class_id"/>
+                                    <field name="career_id"/>
+                                    <field name="avg_score" avg="Promedio"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- prueba.student search view -->
+    <record id="prueba_student_view_search" model="ir.ui.view">
+        <field name="name">prueba.student.view.search</field>
+        <field name="model">prueba.student</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="last_name"/>
+                <field name="age"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="student_action" model="ir.actions.act_window">
+        <field name="name">Estudiantes</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">prueba.student</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="context">{}</field>
+        <field name="domain">[]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Student
+            </p>
+        </field>
+    </record>
+
+    <!-- This Menu Item will appear in the Upper bar, that's why It needs NO parent or action -->
+    <menuitem id="mystudent_menu_root" name="Mis estudiantes" sequence="10"/>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="mystudent_menu_act" name="Mis estudiantes" parent="mystudent_menu_root" action="student_action" sequence="12"/>
+    
+  </data>
+</odoo>

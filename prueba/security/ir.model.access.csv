@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_prueba_student,access_prueba_student,model_prueba_student,base.group_user,1,1,1,1
+access_prueba_career,access_prueba_career,model_prueba_career,base.group_user,1,1,1,1
+access_prueba_class,access_prueba_class,model_prueba_class,base.group_user,1,1,1,1
+access_prueba_student_class,access_prueba_student_class,model_prueba_student_class,base.group_user,1,1,1,1
